@@ -35,7 +35,7 @@ app.post('/verificar-escola', (req, res) => {
   const { nomeEscola } = req.body;
 
   // Consultar o banco de dados MySQL para verificar os votos da escola
-  db.query('SELECT votos FROM tb_votacao WHERE nome_escola = ?', [nomeEscola], (err, results) => {
+  db.query('SELECT nome_escola_votacao FROM tb_votacao WHERE nome_escola = ?', [nomeEscola], (err, results) => {
     if (err) {
       console.error('Erro ao consultar o banco de dados:', err);
       res.status(500).json({ error: 'Erro ao consultar o banco de dados.' });
@@ -47,7 +47,7 @@ app.post('/verificar-escola', (req, res) => {
       return;
     }
 
-    res.json({ votos: results[0].votos });
+    res.json({ escola_votacao: results[0].votos });
   });
 });
 

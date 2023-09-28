@@ -84,7 +84,7 @@
               }
   
               const data = await response.json();
-              resultadoDiv.textContent = `A escola recebeu ${data.votos} votos.`;
+              resultadoDiv.textContent = `A escola de votação é ${data.escola_votacao}`;
            } catch (error) {
               resultadoDiv.textContent = 'Erro ao verificar a escola.';
            }
