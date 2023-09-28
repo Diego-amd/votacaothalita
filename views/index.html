@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local de votação Eleição Conselheiro Tutelar</title>
+    <style>
+        body {
+            background-color: #ff66b2; /* Cor rosa escuro */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: black;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 100%; /* Ajustado para 100% para centralizar */
+            max-width: 450px; /* Largura máxima do campo de entrada */
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #ff3385; /* Cor rosa mais clara */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ff005a; /* Cor rosa mais escura ao passar o mouse */
+        }
+
+        p {
+            color: white;
+            font-size: 32px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form action="/verificar-escola" method="post">
+        <h1>Local de votação Eleição Conselheira Tutelar</h1>
+        <input type="text" placeholder="Coloque aqui o nome da sua escola de votação">
+        <button>Consultar escola</button>
+        <h3>Vote na Thalita Ferreira - VOTE 68 ❤️</h3>
+    </form>
+    <div id="resultado"></div>
+    <script>
+        const form = document.querySelector('form');
+        const resultadoDiv = document.getElementById('resultado');
+  
+        form.addEventListener('submit', async (e) => {
+           e.preventDefault();
+  
+           const formData = new FormData(form);
+           const nomeEscola = formData.get('nomeEscola');
+  
+           try {
+              const response = await fetch('/verificar-escola', {
+                 method: 'POST',
+                 headers: {
+                    'Content-Type': 'application/json',
+                 },
+                 body: JSON.stringify({ nomeEscola }),
+              });
+  
+              if (!response.ok) {
+                 throw new Error(`Erro ${response.status}`);
+              }
+  
+              const data = await response.json();
+              resultadoDiv.textContent = `A escola recebeu ${data.votos} votos.`;
+           } catch (error) {
+              resultadoDiv.textContent = 'Erro ao verificar a escola.';
+           }
+        });
+     </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "votacao-thalita",
+  "version": "1.0.0",
+  "description": "Votação Eleição Conselheira Tutelar Thalita Ferreira",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Diego-amd/votacaothalita.git"
+  },
+  "author": "Diego Armindo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Diego-amd/votacaothalita/issues"
+  },
+  "homepage": "https://github.com/Diego-amd/votacaothalita#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  }
+}
